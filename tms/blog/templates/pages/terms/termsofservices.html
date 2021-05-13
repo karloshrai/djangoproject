@@ -1,0 +1,24 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+    <main id="main">
+
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Terms of Services</h2>
+                    <ol>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Term of Services</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section>
+        <div class="col-md-12">
+            <h1><strong>{{ termData.title }}</strong></h1>
+            {{ termData.description|safe }}
+        </div>
+    </main><!-- End #main -->
+{% endblock content %}

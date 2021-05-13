@@ -1,0 +1,43 @@
+<header id="header">
+    <div class="container d-flex">
+
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a href="{% url 'index' %}">{{ companyData.company_name }}</a></h1>
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'package' %}">Packages</a></li>
+                <li><a href="{% url 'hotel' %}">Hotels</a></li>
+                <li class="drop-down"><a href="">Blog</a>
+                    <ul>
+                        {% for category in blogCategoryData %}
+                            <li><a href="{% url 'category_blog' category.slug %}">{{ category.cat_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'enquiry' %}">Enquiry</a></li>
+
+                {% if user.is_authenticated %}
+                    <li>
+                        <form action="{% url 'user_logout' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-danger" style="margin-top: 10px;">
+                                <i class="icofont-lock"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+
+                {% else %}
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+    </div>
+</header>

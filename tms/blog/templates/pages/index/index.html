@@ -1,0 +1,117 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+
+    <body>
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+            <div class="carousel-inner" role="listbox">
+
+                {% for slider in sliderData %}
+
+                    {% if slider.is_first == 'y' %}
+
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active" style="background-image: url({{ slider.image.url }});">
+                            <div class="carousel-container">
+                                <div class="carousel-content animate__animated animate__fadeInUp">
+                                    <h2><span>{{ slider.title }}</span></h2>
+                                    <p>{{ slider.description|safe|slice:'100' }}</p>
+                                    <div class="text-center"><a href="{% url 'slider-details' slider.slug %}"
+                                                                class="btn-get-started">Read More</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-item" style="background-image: url({{ slider.image.url }});">
+                            <div class="carousel-container">
+                                <div class="carousel-content animate__animated animate__fadeInUp">
+                                    <h2>{{ slider.title }}</h2>
+                                    <p>{{ slider.description|safe|slice:'100' }}</p>
+                                    <div class="text-center"><a href="{% url 'slider-details' slider.slug %}"
+                                                                class="btn-get-started">Read More</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+
+                <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bx bx-left-arrow" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+
+                <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bx bx-right-arrow" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+                <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+            </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= Services Section ======= -->
+        <section id="services" class="services">
+            <div class="container">
+
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Why Choose <strong>Us?</strong></h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="icon-box" data-aos="fade-up">
+                            <div class="icon"><i class="icofont-computer"></i></div>
+                            <h4 class="title">Easy Booking</a></h4>
+                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
+                                excepturi sint occaecati cupiditate non provident</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                            <div class="icon"><i class="icofont-chart-bar-graph"></i></div>
+                            <h4 class="title">More users, more friendly</a></h4>
+                            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                aliquip
+                                ex ea commodo consequat tarad limino ata</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                            <div class="icon"><i class="icofont-earth"></i></div>
+                            <h4 class="title"> Book from any Location</a></h4>
+                            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                dolore eu fugiat nulla pariatur</p>
+                        </div>
+                    </div>
+                </div>
+                <!--packages-->
+                <div class="section-title" data-aos="fade-up">
+                    <h2><strong>Popular</strong> Packages</h2>
+                </div>
+
+                <div class="row">
+                    {% for package in packageData %}
+                        <div class="col-lg-4 col-md-6">
+                            <img src="{{ package.image.url }}" style="width: 100%;height: 200px;" alt="">
+                            <a href="">Price: {{ package.price }}</a>
+                            <p>
+                                {{ package.description|safe|slice:'50' }}
+                            </p>
+
+                        </div>
+                    {% endfor %}
+                </div>
+        </section><!-- End Services Section -->
+
+    </main>
+
+{% endblock content %}
